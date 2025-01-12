@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Panel</title>
+</head>
+<body>
+<div>
+  <h1>User Panel</h1>
+
+  <div>
+    <a href="#" th:href="@{/}"
+       role="button"
+       aria-pressed="true">Back to home page</a>
+  </div>
+  <div>
+    <a href="#" th:href="@{/logout}"
+       role="button"
+       aria-pressed="true">Logout</a>
+  </div>
+  <form th:action="@{/user-panel/delete-account}" method="post">
+    <button type="submit" style="color: red;" onclick="if (!(confirm('Czy na pewno chcesz usunąć swoje konto?'))) return false">Usuń konto</button>
+  </form>
+
+  <h2>User Information</h2>
+  <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+  <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+
+
+  <h2>Available Slots</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Artist</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="availability : ${availabilities}">
+      <td th:text="${availability.date}"></td>
+      <td th:text="${availability.time}"></td>
+      <td th:text="${availability.artist.name}"></td>
+      <td>
+        <form th:action="@{/user-panel/book}" method="post">
+          <input type="hidden" name="availabilityId" th:value="${availability.id}" />
+          <button type="submit">Zarezerwuj termin</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <h2>Your Appointments</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Artist</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="appointment : ${appointments}">
+      <td th:text="${appointment.date}"></td>
+      <td th:text="${appointment.time}"></td>
+      <td th:text="${appointment.artist.name}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<h2>ADMIN PANEL</h2>
+
+<div>
+    <a href="#" th:href="@{/admin-panel/contact}"
+       role="button"
+       aria-pressed="true">Message</a>
+</div>
+<div>
+    <a href="#" th:href="@{/admin-panel/appointment}"
+       role="button"
+       aria-pressed="true">Spotkania</a>
+</div>
+<div>
+    <a href="#" th:href="@{/admin-panel/artist}"
+       role="button"
+       aria-pressed="true">Artist</a>
+</div>
+<div>
+    <a href="#" th:href="@{/admin-panel/availability}"
+       role="button"
+       aria-pressed="true">Dostępność</a>
+</div>
+<div>
+    <a href="#" th:href="@{/admin-panel/portfolio}"
+       role="button"
+       aria-pressed="true">Portfolio</a>
+</div>
+<div>
+    <a href="#" th:href="@{/}"
+       role="button"
+       aria-pressed="true">Back to home page</a>
+</div>
+
+<div>
+    <a href="#" th:href="@{/logout}"
+       role="button"
+       aria-pressed="true">Logout</a>
+</div>
+
+</body>
+</html>

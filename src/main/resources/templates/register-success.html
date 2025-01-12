@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete</title>
+
+</head>
+<body>
+<div>
+  <h2>Poprawnie zarejestrowano!</h2>
+  <span>ID: </span><span th:text="${user.id}"></span><br/>
+  <span>Username: </span><span th:text="${user.username}"></span><br/>
+  <span>Password: </span><span th:text="${user.password}"></span><br/>
+  <span>Phone: </span><span th:text="${user.phoneNumber}"></span><br/>
+
+
+</div>
+<div>
+  <a href="#" th:href="@{/}"
+     role="button"
+     aria-pressed="true">Back to home page</a>
+</div>
+</body>
+</html>

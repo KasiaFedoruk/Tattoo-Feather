@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Contact Success</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>ID:</span><span th:text="${contact.id}"></span><br/>
+    <span>Phone number</span><span th:text="${contact.phone}"></span><br/>
+    <span>Message</span><span th:text="${contact.message}"></span><br/>
+</div>
+<div>
+    <a href="#" th:href="@{/}"
+       role="button"
+       aria-pressed="true">Back to home page</a>
+</div>
+</body>
+</html>

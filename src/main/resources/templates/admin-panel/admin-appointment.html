@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Appointments</title>
+</head>
+<body>
+<div>
+    <h1>Admin Panel - Appointments</h1>
+
+    <div>
+        <a href="#" th:href="@{/admin-panel}"
+           role="button"
+           aria-pressed="true">Back to admin panel</a>
+    </div>
+    <div>
+        <a href="#" th:href="@{/logout}"
+           role="button"
+           aria-pressed="true">Logout</a>
+    </div>
+
+    <h2>Appointments List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>User</th>
+            <th>Phone Number</th>
+            <th>Artist</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${appointments}">
+            <td th:text="${appointment.id}"></td>
+            <td th:text="${appointment.date}"></td>
+            <td th:text="${appointment.time}"></td>
+            <td th:text="${appointment.user.username}"></td>
+            <td th:text="${appointment.user.phoneNumber}"></td>
+            <td th:text="${appointment.artist.name}"></td>
+            <td>
+                <form th:action="@{/admin-panel/delete-appointment}" method="post">
+                    <input type="hidden" name="appointmentId" th:value="${appointment.id}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

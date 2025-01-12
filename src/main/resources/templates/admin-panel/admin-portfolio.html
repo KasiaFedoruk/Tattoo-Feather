@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Portfolio</title>
+</head>
+<body>
+<div>
+  <h1>Admin Panel - Portfolio</h1>
+
+  <div>
+    <a href="#" th:href="@{/admin-panel}"
+       role="button"
+       aria-pressed="true">Back to admin panel</a>
+  </div>
+  <div>
+    <a href="#" th:href="@{/logout}"
+       role="button"
+       aria-pressed="true">Logout</a>
+  </div>
+
+  <h2>Portfolio List</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Photo URL</th>
+      <th>Artist</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="portfolio : ${portfolios}">
+      <td th:text="${portfolio.id}"></td>
+      <td><a th:href="${portfolio.photoURL}" target="_blank" th:text="${portfolio.photoURL}"></a></td>
+      <td th:text="${portfolio.artist.name}"></td>
+      <td>
+        <form th:action="@{/admin-panel/delete-portfolio}" method="post">
+          <input type="hidden" name="portfolioId" th:value="${portfolio.id}" />
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <h2>Dodaj Nowe Zdjęcie</h2>
+  <form th:action="@{/admin-panel/add-portfolio}" method="post">
+    <div>
+      <label for="photoURL">Photo URL</label>
+      <input type="text" id="photoURL" name="photoURL" placeholder="Enter photo URL" required>
+    </div>
+    <div>
+      <label for="artistId">Artist</label>
+      <select id="artistId" name="artistId" required>
+        <option value="" disabled selected>Select an artist</option>
+
+        <option th:each="artist : ${artists}" th:value="${artist.id}" th:text="${artist.name}"></option>
+      </select>
+    </div>
+    <button type="submit">Dodaj zdjęcie</button>
+  </form>
+</div>
+</body>
+</html>

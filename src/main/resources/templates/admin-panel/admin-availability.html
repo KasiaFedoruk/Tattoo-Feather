@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Availability</title>
+</head>
+<body>
+<div>
+    <h1>Admin Panel - Availability</h1>
+    <div>
+        <a href="#" th:href="@{/admin-panel}"
+           role="button"
+           aria-pressed="true">Back to admin panel</a>
+    </div>
+    <div>
+        <a href="#" th:href="@{/logout}"
+           role="button"
+           aria-pressed="true">Logout</a>
+    </div>
+
+    <h2>Availability List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Artist</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="availability : ${availabilities}">
+            <td th:text="${availability.id}"></td>
+            <td th:text="${availability.date}"></td>
+            <td th:text="${availability.time}"></td>
+            <td th:text="${availability.artist.name}"></td>
+            <td>
+                <form th:action="@{/admin-panel/delete-availability}" method="post">
+                    <input type="hidden" name="availabilityId" th:value="${availability.id}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <h2>Add New Availability</h2>
+    <form th:action="@{/admin-panel/add-availability}" method="post">
+        <div>
+            <label for="date">Date</label>
+            <input type="text" id="date" name="date" placeholder="YYYY-MM-DD" required>
+        </div>
+        <div>
+            <label for="time">Time</label>
+            <input type="text" id="time" name="time" placeholder="HH:MM" required>
+        </div>
+        <div>
+            <label for="artistId">Artist</label>
+            <select id="artistId" name="artistId" required>
+                <option value="" disabled selected>Select an artist</option>
+
+                <option th:each="artist : ${artists}" th:value="${artist.id}" th:text="${artist.name}"></option>
+            </select>
+        </div>
+        <button type="submit">Add Availability</button>
+    </form>
+</div>
+</body>
+</html>

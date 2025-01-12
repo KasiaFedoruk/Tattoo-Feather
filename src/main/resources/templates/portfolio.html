@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+</head>
+<body>
+<div>
+    <h1>Portfolio</h1>
+
+    <div>
+        <a href="#" th:href="@{/}"
+           role="button"
+           aria-pressed="true">Back to home page</a>
+    </div>
+
+    <h2>Zdjęcia</h2>
+    <div>
+        <ul style="list-style-type: none;">
+            <li th:each="photo : ${photos}">
+                <a th:href="${photo.photoURL}" target="_blank">
+                <img th:src="${photo.photoURL}" style="max-width: 200px; max-height: 150px;" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

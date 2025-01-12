@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+</head>
+<body>
+<div>
+    <h1>Artists</h1>
+
+    <div>
+        <a href="#" th:href="@{/}"
+           role="button"
+           aria-pressed="true">Back to home page</a>
+    </div>
+    <div>
+        <div th:each="artist : ${artists}">
+            <img th:src="${artist.photoURL}"style="max-width: 200px; max-height: 150px;" />
+            <h2 th:text="${artist.name}"></h2>
+            <p th:text="${artist.description}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

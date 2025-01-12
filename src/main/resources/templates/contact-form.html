@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+<h1>Formularz kontaktowy</h1>
+<form action="#" th:action="@{/authenticateContact}" th:object="${contact}" method="POST">
+    <p>
+        Numer telefonu: <input type="text" th:field="*{phone}" required/>
+    </p>
+    <p>
+        <textarea th:field="*{message}">
+            Przykładowa wiadomość.
+        </textarea>
+    </p>
+    <button type="submit" onclick="if (!(confirm('Czy na pewno chcesz wysłać tę wiadomość?'))) return false">Wyślij</button>
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+</form>
+
+<div>
+    <a href="#" th:href="@{/}"
+       role="button"
+       aria-pressed="true">Back to home page</a>
+</div>
+
+</body>
+</html>

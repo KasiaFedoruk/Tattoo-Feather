@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>USER PANEL</title>
+</head>
+<body>
+<h1>Admin Panel - Contact</h1>
+
+<div>
+  <a href="#" th:href="@{/admin-panel}"
+     role="button"
+     aria-pressed="true">Back to admin panel</a>
+</div>
+<div>
+  <a href="#" th:href="@{/logout}"
+     role="button"
+     aria-pressed="true">Logout</a>
+</div>
+
+<div th:if="${contact != null and contact.size() > 0}">
+  <h3>Lista wiadomości</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Phone Number</th>
+      <th>Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tempContact : ${contact}">
+      <td th:text="${tempContact.id}"></td>
+      <td th:text="${tempContact.phone}"></td>
+      <td th:text="${tempContact.message}"></td>
+      <td>
+        <form action="#" th:action="@{/admin-panel/delete-message}" method="POST">
+
+          <input type="hidden" name="messageId" th:value="${tempContact.id}" />
+          <button type="submit" onclick="if (!(confirm('Czy na pewno?'))) return false">
+            Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div th:if="${contact == null or contact.size() == 0}">
+    <p>Lista jest pusta</p>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>
